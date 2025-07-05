@@ -1,33 +1,14 @@
-import * as React from "react";
-import { cva } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import { ButtonHTMLAttributes } from 'react';
 
-const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-  {
-    variants: {
-      variant: {
-        default: "bg-black text-white hover:bg-gray-800",
-        outline: "border border-input bg-transparent hover:bg-accent hover:text-accent-foreground",
-      },
-      size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 px-3",
-        lg: "h-11 px-8",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-);
-
-const Button = React.forwardRef(({ className, variant, size, ...props }, ref) => {
-  return (
-    <button className={cn(buttonVariants({ variant, size }), className)} ref={ref} {...props} />
-  );
-});
-Button.displayName = "Button";
-
-export { Button, buttonVariants };
+export function Button({
+  children,
+  variant = 'default',
+  ...props
+}: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'default' | 'outline' }) {
+  const base = 'px-4 py-2 rounded text-sm font-medium';
+  const style =
+    variant === 'outline'
+      ? 'border border-gray-400 text-gray-700 bg-white'
+      : 'bg-blue-600 text-white hover:bg-blue-700';
+  return <button className={`${base} ${style}`} {...props}>{children}</button>;
+}
