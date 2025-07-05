@@ -13,11 +13,7 @@
     "jsx": "preserve",
     "module": "esnext",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    **"baseUrl": ".",**
-    **"paths": {**
-      **"@/*": ["./*"]**
-    **}**
+    "resolveJsonModule": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
